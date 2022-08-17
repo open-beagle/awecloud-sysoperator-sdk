@@ -13,7 +13,6 @@
 package v1
 
 import (
-	"github.com/open-beagle/awecloud-sysoperator-sdk/pkg/traefik/v1alpha1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -21,13 +20,10 @@ import (
 
 var (
 	// SchemeGroupVersion is group version used to register these objects
-	SchemeGroupVersion   = schema.GroupVersion{Group: "bcc.bd-apaas.com", Version: "v1"}
-	SchemeGatewayVersion = schema.GroupVersion{Group: "bcc.bd-apaas.com", Version: "v1alpha1"}
+	SchemeGroupVersion = schema.GroupVersion{Group: "bcc.bd-apaas.com", Version: "v1"}
 
 	// SchemeBuilder is used to add go types to the GroupVersionKind scheme
 	SchemeBuilder = runtime.NewSchemeBuilder(addKnownTypes)
-
-	SchemeGatewayBuilder = runtime.NewSchemeBuilder(addGateWayTypes)
 )
 
 // Adds the list of known types to the given scheme.
@@ -71,27 +67,5 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 		&BgIngressHostList{},
 	)
 	metav1.AddToGroupVersion(scheme, SchemeGroupVersion)
-	return nil
-}
-
-func addGateWayTypes(scheme *runtime.Scheme) error {
-	scheme.AddKnownTypes(SchemeGatewayVersion,
-		&v1alpha1.IngressHost{},
-		&v1alpha1.IngressRoute{},
-		&v1alpha1.IngressRouteList{},
-		&v1alpha1.IngressRouteTCP{},
-		&v1alpha1.IngressRouteTCPList{},
-		&v1alpha1.IngressRouteUDP{},
-		&v1alpha1.IngressRouteUDPList{},
-		&v1alpha1.Middleware{},
-		&v1alpha1.MiddlewareList{},
-		&v1alpha1.TLSOption{},
-		&v1alpha1.TLSOptionList{},
-		&v1alpha1.TLSStore{},
-		&v1alpha1.TLSStoreList{},
-		&v1alpha1.BeagleService{},
-		&v1alpha1.BeagleServiceList{},
-	)
-	metav1.AddToGroupVersion(scheme, SchemeGatewayVersion)
 	return nil
 }
