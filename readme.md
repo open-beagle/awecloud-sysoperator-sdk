@@ -7,8 +7,8 @@ github.com/open-beagle/awecloud-sysoperator-sdk/pkg/traefik/v1alpha1 => github.c
 operator-sdk-v0.17 generate k8s
 
 # tag
-git tag v0.5.3 -f
-git push origin v0.5.3 -f
+git tag v0.5.4 -f
+git push origin v0.5.4 -f
 
 # protos
 go-to-protobuf \
