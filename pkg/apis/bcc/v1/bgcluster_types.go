@@ -31,6 +31,7 @@ type BgClusterSpec struct {
 	Memory       string `json:"memory,omitempty" protobuf:"bytes,11,opt,name=memory"`
 	Fs           string `json:"fs,omitempty" protobuf:"bytes,12,opt,name=fs"`
 	Des          string `json:"des,omitempty" protobuf:"bytes,13,opt,name=des"`
+	Secret       string `json:"secret,omitempty" protobuf:"bytes,1,opt,name=secret"`
 }
 
 // BgClusterStatus defines the observed state of BgCluster

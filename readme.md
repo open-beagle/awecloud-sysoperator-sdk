@@ -6,6 +6,33 @@ github.com/open-beagle/awecloud-sysoperator-sdk/pkg/traefik/v1alpha1 => github.c
 # operator-sdk
 operator-sdk-v0.17 generate k8s
 
+
+## dev
+
+```bash
+# 新建一个Tag
+git tag v1.0.0-beagle.5
+
+# 推送一个Tag ，-f 强制更新
+git push -f origin v1.0.0-beagle.5
+
+# 删除本地Tag
+git tag -d v1.0.0-beagle.5
+```
+
+## realse
+
+```bash
+# 新建一个Tag
+git tag v1.0.0-beagle
+
+# 推送一个Tag ，-f 强制更新
+git push -f origin v1.0.0-beagle
+
+# 删除本地Tag
+git tag -d v1.0.0-beagle
+```
+
 # tag
 git tag v6.0.1 -f
 git push origin v6.0.1 -f
