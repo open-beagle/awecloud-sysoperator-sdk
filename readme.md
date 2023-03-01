@@ -11,26 +11,26 @@ operator-sdk-v0.17 generate k8s
 
 ```bash
 # 新建一个Tag
-git tag v1.0.0-beagle.5
+git tag v0.6.6-beagle.5
 
 # 推送一个Tag ，-f 强制更新
-git push -f origin v1.0.0-beagle.5
+git push -f origin v0.6.6-beagle.5
 
 # 删除本地Tag
-git tag -d v1.0.0-beagle.5
+git tag -d v0.6.6-beagle.5
 ```
 
 ## realse
 
 ```bash
 # 新建一个Tag
-git tag v1.0.0-beagle
+git tag v0.6-beagle
 
 # 推送一个Tag ，-f 强制更新
-git push -f origin v1.0.0-beagle
+git push -f origin v0.6-beagle
 
 # 删除本地Tag
-git tag -d v1.0.0-beagle
+git tag -d v0.6-beagle
 ```
 
 # tag

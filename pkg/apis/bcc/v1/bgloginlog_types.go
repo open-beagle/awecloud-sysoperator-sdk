@@ -22,7 +22,7 @@ type Log struct {
 	Content      string      `json:"content" protobuf:"bytes,4,opt,name=content"`            // 操作内容
 	Result       int32       `json:"result" protobuf:"varint,5,opt,name=result"`             // 操作结果  0 失败 | 1 成功
 	Time         metav1.Time `json:"created,omitempty" protobuf:"bytes,6,opt,name=created"`  // 操作时间
-	UserID       string      `josn:"userid" protobuf:"bytes,7,opt,name=userid"`
+	UserID       string      `json:"userid" protobuf:"bytes,7,opt,name=userid"`
 }
 
 // BgLoginLogStatus defines the observed state of BgLoginLog
