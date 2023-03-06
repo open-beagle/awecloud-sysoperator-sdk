@@ -38,6 +38,7 @@ type BgShellLogStatus struct {
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
+//+kubebuilder:resource:path=bgshelllogs,scope=Cluster
 
 // BgShellLog is the Schema for the bgshelllogs API
 type BgShellLog struct {
