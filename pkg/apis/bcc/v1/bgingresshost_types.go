@@ -66,3 +66,7 @@ type BgIngressHostList struct {
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []BgIngressHost `json:"items"`
 }
+
+func init() {
+	SchemeBuilder.Register(&BgIngressHost{}, &BgIngressHostList{})
+}

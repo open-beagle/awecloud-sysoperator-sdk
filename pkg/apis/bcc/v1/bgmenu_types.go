@@ -12,38 +12,39 @@ type BgMenuSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
-	Alias     string       `json:"alias,omitempty" protobuf:"bytes,1,opt,name=alias"`
-	Roles     []string     `json:"roles,omitempty" protobuf:"bytes,2,rep,name=roles"`
-	Href      string       `json:"href,omitempty" protobuf:"bytes,3,opt,name=href"`
-	Icon      string       `json:"icon,omitempty" protobuf:"bytes,4,opt,name=icon"`
-	Iconhov   string       `json:"iconhov,omitempty" protobuf:"bytes,5,opt,name=iconhov"`
-	Group     bool         `json:"group,omitempty" protobuf:"varint,6,opt,name=group"`
-	Namespace bool         `json:"namespace,omitempty" protobuf:"varint,7,opt,name=namespace"`
-	IsNewTab  bool         `json:"is_new_tab,omitempty" protobuf:"varint,8,opt,name=is_new_tab,json=isNewTab"`
-	Submenus  []BgMenuSpec `json:"submenus,omitempty" protobuf:"bytes,9,rep,name=submenus"`
+	Alias     string     `json:"alias,omitempty" protobuf:"bytes,1,opt,name=alias"`
+	Roles     []string   `json:"roles,omitempty" protobuf:"bytes,2,rep,name=roles"`
+	Href      string     `json:"href,omitempty" protobuf:"bytes,3,opt,name=href"`
+	Icon      string     `json:"icon,omitempty" protobuf:"bytes,4,opt,name=icon"`
+	Iconhov   string     `json:"iconhov,omitempty" protobuf:"bytes,5,opt,name=iconhov"`
+	Group     bool       `json:"group,omitempty" protobuf:"varint,6,opt,name=group"`
+	Namespace bool       `json:"namespace,omitempty" protobuf:"varint,7,opt,name=namespace"`
+	IsNewTab  bool       `json:"is_new_tab,omitempty" protobuf:"varint,8,opt,name=is_new_tab,json=isNewTab"`
+	Submenus  []*Submenu `json:"submenus,omitempty" protobuf:"bytes,9,rep,name=submenus"`
 }
 
-// type Menu struct {
-// 	Alias     string   `json:"alias,omitempty"`
-// 	Roles     []string `json:"roles,omitempty"`
-// 	Href      string   `json:"href,omitempty"`
-// 	Icon      string   `json:"icon,omitempty"`
-// 	Iconhov   string   `json:"iconhov,omitempty"`
-// 	Group     bool     `json:"group,omitempty"`
-// 	Namespace bool     `json:"namespace,omitempty"`
-// 	IsNewTab  bool     `json:"is_new_tab,omitempty"`
-// 	Submenus  []Menu   `json:"submenus,omitempty"`
-// }
+// Submenu
+// +k8s:openapi-gen=true
+type Submenu struct {
+	Alias     string          `json:"alias,omitempty"`
+	Href      string          `json:"href,omitempty"`
+	Icon      string          `json:"icon,omitempty"`
+	Iconhov   string          `json:"iconhov,omitempty"`
+	Roles     []string        `json:"roles,omitempty"`
+	Group     bool            `json:"group,omitempty"`
+	Namespace bool            `json:"namespace,omitempty"`
+	Submenus  []*ThreeSubmenu `json:"submenus,omitempty"`
+}
 
-//type Submenu struct {
-//	Alias     string   `json:"alias"`
-//	Href      string   `json:"href"`
-//	Icon      string   `json:"icon"`
-//	Iconhov   string   `json:"iconhov"`
-//	Roles     []string `json:"roles"`
-//	Group     bool     `json:"group"`
-//	Namespace bool     `json:"namespace"`
-//}
+type ThreeSubmenu struct {
+	Alias     string   `json:"alias,omitempty"`
+	Href      string   `json:"href,omitempty"`
+	Icon      string   `json:"icon,omitempty"`
+	Iconhov   string   `json:"iconhov,omitempty"`
+	Roles     []string `json:"roles,omitempty"`
+	Group     bool     `json:"group,omitempty"`
+	Namespace bool     `json:"namespace,omitempty"`
+}
 
 // BgMenuStatus defines the observed state of BgMenu
 type BgMenuStatus struct {
@@ -79,4 +80,8 @@ type BgMenuList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty" protobuf:"bytes,1,opt,name=metadata"`
 	Items           []BgMenu `json:"items" protobuf:"bytes,2,rep,name=items"`
+}
+
+func init() {
+	SchemeBuilder.Register(&BgMenu{}, &BgMenuList{})
 }

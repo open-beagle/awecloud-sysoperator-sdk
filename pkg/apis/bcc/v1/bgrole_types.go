@@ -6,7 +6,9 @@ import (
 
 const (
 	// BgRoleSA , 角色预定义-超管
-	BgRoleSA = "beagle:kubernetes:sa"
+	BgRoleSA             = "beagle:kubernetes:sa"
+	BgRoleTypeKubernetes = "kubernetes"
+	BgRoleTypeGroup      = "groups"
 )
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
@@ -57,4 +59,8 @@ type BgRoleList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty" protobuf:"bytes,1,opt,name=metadata"`
 	Items           []BgRole `json:"items" protobuf:"bytes,2,rep,name=items"`
+}
+
+func init() {
+	SchemeBuilder.Register(&BgRole{}, &BgRoleList{})
 }

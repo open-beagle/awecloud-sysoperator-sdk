@@ -76,3 +76,7 @@ type BgNamespaceList struct {
 	metav1.ListMeta `json:"metadata,omitempty" protobuf:"bytes,1,opt,name=metadata"`
 	Items           []BgNamespace `json:"items" protobuf:"bytes,2,rep,name=items"`
 }
+
+func init() {
+	SchemeBuilder.Register(&BgNamespace{}, &BgNamespaceList{})
+}

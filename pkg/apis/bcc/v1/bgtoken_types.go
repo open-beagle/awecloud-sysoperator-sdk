@@ -81,3 +81,7 @@ type ExtraValue []string
 func (t ExtraValue) String() string {
 	return fmt.Sprintf("%v", []string(t))
 }
+
+func init() {
+	SchemeBuilder.Register(&BgToken{}, &BgTokenList{})
+}

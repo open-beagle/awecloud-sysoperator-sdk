@@ -1,3 +1,19 @@
+/*
+Copyright 2022.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 package v1
 
 import (
@@ -11,16 +27,16 @@ import (
 // BgUserSpec defines the desired state of BgUser
 // +k8s:openapi-gen=true
 type BgUserSpec struct {
-	Alias       string         `json:"alias" protobuf:"bytes,1,opt,name=alias"`
-	Phone       string         `json:"phone,omitempty" protobuf:"bytes,2,opt,name=phone"`
-	Email       string         `json:"email" protobuf:"bytes,3,opt,name=email"`
-	Avatar      string         `json:"avatar,omitempty" protobuf:"bytes,4,opt,name=avatar"`
-	Disable     bool           `json:"disable,omitempty" protobuf:"varint,5,opt,name=disable"`
-	Password    string         `json:"password,omitempty" protobuf:"bytes,6,opt,name=password"`
-	Default     *BgUserDefault `json:"default,omitempty" protobuf:"bytes,7,opt,name=default"`
-	CenterAdmin string         `json:"centerAdmin,omitempty" protobuf:"bytes,8,opt,name=centerAdmin"` // 中心管理员开关 off on
-	SaAdmin     string         `json:"saAdmin,omitempty" protobuf:"bytes,9,opt,name=saAdmin"`         // 集群管理员开关
-	KubefedPwd  string         `json:"kubefedPwd,omitempty" protobuf:"bytes,7,opt,name=kubefedPwd"`   // 联邦密码
+	Alias       string         `json:"alias"`
+	Phone       string         `json:"phone,omitempty"`
+	Email       string         `json:"email"`
+	Avatar      string         `json:"avatar,omitempty"`
+	Disable     bool           `json:"disable,omitempty"`
+	Password    string         `json:"password,omitempty"`
+	Default     *BgUserDefault `json:"default,omitempty"`
+	CenterAdmin string         `json:"centerAdmin,omitempty"` // 中心管理员开关 off on
+	SaAdmin     string         `json:"saAdmin,omitempty"`     // 集群管理员开关
+	KubefedPwd  string         `json:"kubefedPwd,omitempty"`  // 联邦密码
 }
 
 // BgUserStatus defines the observed state of BgUser
@@ -28,57 +44,57 @@ type BgUserSpec struct {
 type BgUserStatus struct {
 	// 创建人
 	// +optional
-	Creator string `json:"creator,omitempty" protobuf:"bytes,1,opt,name=creator"`
+	Creator string `json:"creator,omitempty"`
 
 	// 创建时间
 	// +optional
-	Created metav1.Time `json:"created,omitempty" protobuf:"bytes,2,opt,name=created"`
+	Created metav1.Time `json:"created,omitempty"`
 
 	// 运行状态， Running , Completed
 	// +optional
-	Phase BgPhase `json:"phase,omitempty" protobuf:"bytes,3,opt,name=phase,casttype=BgPhase"`
+	Phase BgPhase `json:"phase,omitempty"`
 
 	// Token ， 会Watch ServiceAccount.Secrets，随之变化
 	// +optional
-	Token string `json:"token,omitempty" protobuf:"bytes,4,opt,name=token"`
+	Token string `json:"token,omitempty"`
 
 	// 分组
 	// +optional
-	Groups map[string]BgUserGroup `json:"groups,omitempty" protobuf:"bytes,5,rep,name=groups"`
+	Groups map[string]BgUserGroup `json:"groups,omitempty"`
 
 	// 角色
 	// +optional
-	Roles []string `json:"roles,omitempty" protobuf:"bytes,6,rep,name=roles"`
+	Roles []string `json:"roles,omitempty"`
 
 	// 用户设置密码以后，密码Password将会从Spec从删除加密保存在Status之中
 	// +optional
-	Password string `json:"password,omitempty" protobuf:"bytes,7,opt,name=password"`
+	Password string `json:"password,omitempty"`
 
 	// 在用户进入垃圾回收时，设置Disable=true
 	// +optional
-	Disable bool `json:"disable,omitempty" protobuf:"varint,8,opt,name=disable"`
+	Disable bool `json:"disable,omitempty"`
 
 	// 用户最后一次登录时间
 	// +optional
-	LastLogin *metav1.Time `json:"lastLogin,omitempty" protobuf:"bytes,9,opt,name=lastLogin"`
+	LastLogin *metav1.Time `json:"lastLogin,omitempty"`
 }
 
 // BgUserDefault defines the observed state of BgUser
 // +k8s:openapi-gen=true
 type BgUserDefault struct {
-	Group   string `json:"group,omitempty" protobuf:"bytes,1,opt,name=group"`
-	Cluster string `json:"cluster,omitempty" protobuf:"bytes,2,opt,name=cluster"`
+	Group   string `json:"group,omitempty"`
+	Cluster string `json:"cluster,omitempty"`
 }
 
 // BgUserGroup defines the observed state of BgUser
 // +k8s:openapi-gen=true
 type BgUserGroup struct {
-	Name       string   `json:"name" protobuf:"bytes,1,opt,name=name"`
-	Alias      string   `json:"alias,omitempty" protobuf:"bytes,2,opt,name=alias"`
-	Des        string   `json:"des,omitempty" protobuf:"bytes,3,opt,name=des"`
-	Role       string   `json:"role" protobuf:"bytes,4,opt,name=role"`
-	Default    string   `json:"namespace,omitempty" protobuf:"bytes,5,opt,name=namespace"`
-	Namespaces []string `json:"namespaces,omitempty" protobuf:"bytes,6,rep,name=namespaces"`
+	Name       string   `json:"name"`
+	Alias      string   `json:"alias,omitempty"`
+	Des        string   `json:"des,omitempty"`
+	Role       string   `json:"role"`
+	Default    string   `json:"namespace,omitempty"`
+	Namespaces []string `json:"namespaces,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
@@ -89,10 +105,10 @@ type BgUserGroup struct {
 // +kubebuilder:resource:path=bgusers,scope=Cluster
 type BgUser struct {
 	metav1.TypeMeta   `json:",inline"`
-	metav1.ObjectMeta `json:"metadata,omitempty" protobuf:"bytes,1,opt,name=metadata"`
+	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   BgUserSpec   `json:"spec,omitempty" protobuf:"bytes,2,opt,name=spec"`
-	Status BgUserStatus `json:"status,omitempty" protobuf:"bytes,3,opt,name=status"`
+	Spec   BgUserSpec   `json:"spec,omitempty"`
+	Status BgUserStatus `json:"status,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
@@ -100,6 +116,10 @@ type BgUser struct {
 // BgUserList contains a list of BgUser
 type BgUserList struct {
 	metav1.TypeMeta `json:",inline"`
-	metav1.ListMeta `json:"metadata,omitempty" protobuf:"bytes,1,opt,name=metadata"`
-	Items           []BgUser `json:"items" protobuf:"bytes,2,rep,name=items"`
+	metav1.ListMeta `json:"metadata,omitempty"`
+	Items           []BgUser `json:"items"`
+}
+
+func init() {
+	SchemeBuilder.Register(&BgUser{}, &BgUserList{})
 }

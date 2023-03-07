@@ -32,3 +32,7 @@ type BgSettingList struct {
 	metav1.ListMeta `json:"metadata,omitempty" protobuf:"bytes,1,opt,name=metadata"`
 	Items           []BgSetting `json:"items" protobuf:"bytes,2,rep,name=items"`
 }
+
+func init() {
+	SchemeBuilder.Register(&BgSetting{}, &BgSettingList{})
+}

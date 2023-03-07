@@ -55,3 +55,7 @@ type BgGroupUserList struct {
 	metav1.ListMeta `json:"metadata,omitempty" protobuf:"bytes,1,opt,name=metadata"`
 	Items           []BgGroupUser `json:"items" protobuf:"bytes,2,rep,name=items"`
 }
+
+func init() {
+	SchemeBuilder.Register(&BgGroupUser{}, &BgGroupUserList{})
+}
