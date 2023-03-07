@@ -33,6 +33,7 @@ type Submenu struct {
 	Roles     []string        `json:"roles,omitempty"`
 	Group     bool            `json:"group,omitempty"`
 	Namespace bool            `json:"namespace,omitempty"`
+	IsNewTab  bool            `json:"is_new_tab,omitempty" protobuf:"varint,8,opt,name=is_new_tab,json=isNewTab"`
 	Submenus  []*ThreeSubmenu `json:"submenus,omitempty"`
 }
 
@@ -44,6 +45,7 @@ type ThreeSubmenu struct {
 	Roles     []string `json:"roles,omitempty"`
 	Group     bool     `json:"group,omitempty"`
 	Namespace bool     `json:"namespace,omitempty"`
+	IsNewTab  bool     `json:"is_new_tab,omitempty" protobuf:"varint,8,opt,name=is_new_tab,json=isNewTab"`
 }
 
 // BgMenuStatus defines the observed state of BgMenu
