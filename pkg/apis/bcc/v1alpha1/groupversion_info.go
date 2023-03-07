@@ -15,8 +15,8 @@ limitations under the License.
 */
 
 // Package v1alpha1 contains API Schema definitions for the bcc v1alpha1 API group
-// +kubebuilder:object:generate=true
-// +groupName=bcc.bd-apaas.com
+//+kubebuilder:object:generate=true
+//+groupName=bcc.bd-apaas.com
 package v1alpha1
 
 import (

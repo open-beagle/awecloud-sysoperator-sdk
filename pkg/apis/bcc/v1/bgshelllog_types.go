@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package v1alpha1
+package v1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -27,6 +27,7 @@ import (
 type BgShellLogSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+
 	Logs []string `json:"logs"`
 }
 
@@ -36,10 +37,9 @@ type BgShellLogStatus struct {
 	// Important: Run "make" to regenerate code after modifying this file
 }
 
-//+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
-//+kubebuilder:resource:path=bgshelllogs,scope=Cluster
-
+// +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:resource:path=bgshelllogs,scope=Cluster
 // BgShellLog is the Schema for the bgshelllogs API
 type BgShellLog struct {
 	metav1.TypeMeta   `json:",inline"`
