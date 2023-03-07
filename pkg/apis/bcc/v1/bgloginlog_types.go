@@ -21,7 +21,8 @@ type Log struct {
 	OperatorType int32       `json:"operatorType" protobuf:"varint,3,opt,name=operatorType"` // 操作类型  1 登录 | 2 登出  | 3 新增 | 4 修改 | 5 删除
 	Content      string      `json:"content" protobuf:"bytes,4,opt,name=content"`            // 操作内容
 	Result       int32       `json:"result" protobuf:"varint,5,opt,name=result"`             // 操作结果  0 失败 | 1 成功
-	Time         metav1.Time `json:"created,omitempty" protobuf:"bytes,6,opt,name=created"`  // 操作时间
+	Time         metav1.Time `json:"time,omitempty" protobuf:"bytes,6,opt,name=time"`        // 操作时间
+	UserID       string      `json:"userid" protobuf:"bytes,7,opt,name=userid"`
 }
 
 // BgLoginLogStatus defines the observed state of BgLoginLog
