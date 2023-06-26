@@ -27,16 +27,14 @@ import (
 // BgUserSpec defines the desired state of BgUser
 // +k8s:openapi-gen=true
 type BgUserSpec struct {
-	Alias       string         `json:"alias"`
-	Phone       string         `json:"phone,omitempty"`
-	Email       string         `json:"email"`
-	Avatar      string         `json:"avatar,omitempty"`
-	Disable     bool           `json:"disable,omitempty"`
-	Password    string         `json:"password,omitempty"`
-	Default     *BgUserDefault `json:"default,omitempty"`
-	CenterAdmin string         `json:"centerAdmin,omitempty"` // 中心管理员开关 off on
-	SaAdmin     string         `json:"saAdmin,omitempty"`     // 集群管理员开关
-	KubefedPwd  string         `json:"kubefedPwd,omitempty"`  // 联邦密码
+	Alias    string         `json:"alias"`
+	Phone    string         `json:"phone,omitempty"`
+	Email    string         `json:"email"`
+	Avatar   string         `json:"avatar,omitempty"`
+	Disable  bool           `json:"disable,omitempty"`
+	Password string         `json:"password,omitempty"`
+	Default  *BgUserDefault `json:"default,omitempty"`
+	UserType string         `json:"userType"` // 用户类型 sa:超管 tenant:租户  user:普通用户
 }
 
 // BgUserStatus defines the observed state of BgUser
