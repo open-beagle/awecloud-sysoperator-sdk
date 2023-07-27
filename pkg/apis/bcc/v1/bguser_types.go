@@ -34,7 +34,8 @@ type BgUserSpec struct {
 	Disable  bool           `json:"disable,omitempty"`
 	Password string         `json:"password,omitempty"`
 	Default  *BgUserDefault `json:"default,omitempty"`
-	UserType string         `json:"userType"` // 用户类型 sa:超管 tenant:租户  user:普通用户
+	UserType string         `json:"userType"`        // 用户类型 sa:超管 tenant:租户  user:普通用户
+	Owner    string         `json:"owner,omitempty"` // 用户所有者
 }
 
 // BgUserStatus defines the observed state of BgUser
@@ -75,6 +76,10 @@ type BgUserStatus struct {
 	// 用户最后一次登录时间
 	// +optional
 	LastLogin *metav1.Time `json:"lastLogin,omitempty"`
+
+	// 租户创建的用户列表
+	// +optional
+	UserList []string `json:"userList,omitempty"`
 }
 
 // BgUserDefault defines the observed state of BgUser
